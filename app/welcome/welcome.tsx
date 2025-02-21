@@ -1,8 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CustomCard } from "~/components/CustomCard"
 import type { BlogCard } from "~/types/BlogCard"
 
 export function Welcome() {
+  // UseEffect - Hook (lifecycle function)
+  // Every Hook always contain the term 'use'
+  useEffect(() => {
+    console.log("Hello world!")
+  }, []) // run ONCE and only ONCE
+
+  const [count, setCount] = useState<number>(0)
+
   /* Prerequisits for Loops in .tsx
    *   #1 - Array List
    *   #2 - Map through list (within .tsx)
@@ -10,6 +18,7 @@ export function Welcome() {
   const [highscoreList, setHighscoreList] = useState<number[]>([
     150, 250, 500, 1000,
   ])
+
   const [blogCardList, setBlogCardList] = useState<BlogCard[]>([
     {
       title: "Flowers",
@@ -56,6 +65,15 @@ export function Welcome() {
       {blogCardList.map(({ title, content, tags }) => (
         <CustomCard title={title} content={content} tags={tags} />
       ))}
+
+      <button
+        onClick={() => {
+          console.log("click")
+          setCount(count + 1)
+        }}
+      >
+        Count + 1
+      </button>
     </div>
   )
 }
